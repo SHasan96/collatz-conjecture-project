@@ -19,11 +19,9 @@ fn main() {
     let args: Vec<_> = env::args().collect();
     let mut a1: i64 = args[1].to_string().parse::<i64>().unwrap_or(0);
     let mut a2: i64 = args[2].to_string().parse::<i64>().unwrap_or(0);  
-    // Initialize an array of structs (size 10) with all structs with their fields set to zero 
-    let mut numpairs: [Numpair; 10] = [Numpair{num: 0, seqlen: 0}; 10];
-    
+  
     check_args(&mut a1, &mut a2);
-    find_sequence_lengths_in_range(a1, a2, &mut numpairs);
+    find_sequence_lengths_in_range(a1, a2);
 }  
 
 /*
@@ -68,29 +66,29 @@ fn find_sequence_length(num :i64) -> i64 {
   Finds sequence lengths of numbers in a given range (inclusive)
   @param n1 - integer at start of range
   @param n2 - integer at end of range
-  @paran arr - a mutable reference to our array 
-  @note This reference to the array will be passed onto the another
-  function but it needed to be passed here first to remain in scope
 */
-fn find_sequence_lengths_in_range(n1: i64, n2: i64, arr: &mut[Numpair]) {
+fn find_sequence_lengths_in_range(n1: i64, n2: i64) {
    let mut apair: Numpair = Numpair{num: 0, seqlen: 0};
    let mut i = 0; // For keeping count of iterations
-     
+
+   // Initialize an array of structs (size 10) with all structs with their fields set to zero
+   let mut numpairs: [Numpair; 10] = [Numpair{num: 0, seqlen: 0}; 10];
+       
    for n in n1..n2+1 {
       apair.num = n; 
       apair.seqlen = find_sequence_length(n);
       i += 1;
-      add_to_array(arr, apair, &mut i);       
+      add_to_array(&mut numpairs, apair, &mut i);       
    }
    
    println!("Sorted based on sequence length");
-   arr.sort_by_key(|x| x.seqlen);
-   arr.reverse();
-   print_numbers_with_length(arr);
+   numpairs.sort_by_key(|x| x.seqlen);
+   numpairs.reverse();
+   print_numbers_with_length(&numpairs);
    println!("Sorted based on integer size"); 
-   arr.sort_by_key(|x| x.num);
-   arr.reverse();
-   print_numbers_with_length(arr);    
+   numpairs.sort_by_key(|x| x.num);
+   numpairs.reverse();
+   print_numbers_with_length(&numpairs);    
 }
 
 /*
@@ -135,9 +133,9 @@ fn add_to_array(arr: &mut[Numpair], elem: Numpair, i: &mut i64) {
 
 /*
   Print the array elements according to the requirements
-  @param arr - the array to be printed
+  @param arr - the reference to the array to be printed
 */
-fn print_numbers_with_length(arr: &mut[Numpair]) {
+fn print_numbers_with_length(arr: &[Numpair]) {
    for i in 0..10 {
       if arr[i as usize].num == 0 {
          break;
