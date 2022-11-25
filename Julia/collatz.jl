@@ -43,7 +43,7 @@ Finds the length of the collatz sequence
 """
 function find_sequence_length(num)
    m = num
-   steps::Int64 = 0
+   steps = 0
    while m != 1
       steps += 1
       if m%2 == 0
