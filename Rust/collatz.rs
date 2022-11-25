@@ -71,8 +71,9 @@ fn find_sequence_lengths_in_range(n1: i64, n2: i64) {
    let mut apair: Numpair = Numpair{num: 0, seqlen: 0};
    let mut i = 0; // For keeping count of iterations
 
-   // Initialize an array of structs (size 10) with all structs with their fields set to zero
-   let mut numpairs: [Numpair; 10] = [Numpair{num: 0, seqlen: 0}; 10];
+   // Initialize an array of structs (size 10) with all structs with their fields set to -1
+   // This is an arbritrary value to mark them as empty
+   let mut numpairs: [Numpair; 10] = [Numpair{num: -1, seqlen: -1}; 10];
        
    for n in n1..n2+1 {
       apair.num = n; 
@@ -137,7 +138,7 @@ fn add_to_array(arr: &mut[Numpair], elem: Numpair, i: &mut i64) {
 */
 fn print_numbers_with_length(arr: &[Numpair]) {
    for i in 0..10 {
-      if arr[i as usize].num == 0 {
+      if arr[i as usize].num == -1 {
          break;
       }
       println!("{0:>21} {1:>20}", arr[i as usize].num, arr[i as usize].seqlen);
