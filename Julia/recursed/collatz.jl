@@ -1,5 +1,6 @@
 #!/usr2/local/julia-1.8.2/bin/julia
 #######################################################################
+###############      COLLATZ CONJECTURE PROJECT          ##############
 #  A program to find collatz sequence length of ten smallest integers #
 #  in a given range and prints them in descending order of their      #
 #  respective sequence lengths and the integers themselves            #
