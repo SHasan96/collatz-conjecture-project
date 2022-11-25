@@ -48,14 +48,13 @@ fn check_args(n1: &mut i64, n2: &mut i64) {
   @param num - an integer
   @return steps - the length of sequence
 */
-fn find_sequence_length(num :i64) -> i64 {
-   let m = num; 
-   if m == 1 {
+fn find_sequence_length(num :i64) -> i64 { 
+   if num == 1 {
       return 0;
-   } else if m%2 == 0{
-      return 1 + find_sequence_length(m/2);
+   } else if num%2 == 0{
+      return 1 + find_sequence_length(num/2);
    } else {
-      return 1 + find_sequence_length(3*m + 1);
+      return 1 + find_sequence_length(3*num + 1);
    } 
 }
 
