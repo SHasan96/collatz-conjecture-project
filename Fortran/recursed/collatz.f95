@@ -77,10 +77,12 @@ subroutine find_sequence_lengths_in_range(n1, n2)
   type(Numpair)                  :: apair
   type(Numpair), dimension(10)   :: numpairs !< An array of structures
   
-  ! Initializes the array with all struct fields as zeroes
+  ! Initializes the array with all struct fields as -1 
+  ! This is a way of marking empty indices so that it is not filled with garbage
+  ! values.
   do num = 1, 10
-    apair%num = 0
-    apair%seq_len = 0
+    apair%num = -1
+    apair%seq_len = -1
     numpairs(num) = apair
   end do
 
@@ -108,7 +110,7 @@ subroutine print_numbers_with_length(numpairs)
  integer (kind =8)                         :: x
 
  do x = 1, 10 
-   if (numpairs(x)%num == 0) then
+   if (numpairs(x)%num == -1) then
      exit
    end if
    print*, numpairs(x)
