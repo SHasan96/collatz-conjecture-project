@@ -115,6 +115,6 @@ To run:
 
 ## References:
 For tutorial sources such as tutorialspoint, w3schools, youtube, geeks-for-geeks, etc. were used.
-Some code ideas were taken from stackoverflow, etc, and changed to fit the program.
+Some code ideas were taken from stackoverflow, etc, and changed to fit the program.<br>
 A lot of code from the Happy Number project was reused directly or with modifications.
 
