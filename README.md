@@ -43,7 +43,7 @@ program but the function to find the sequence length of an integer is now recurs
 
 ## Compilation and execution instructions
 
-The names of all source code files were "collatz" (for both the iterative and recursive functions) plus the appropriate file extension.
+The names of all source code files were "collatz" (for both the iterative and recursive programs) plus the appropriate file extension.
 
 We are taking command line arguments. The format is: <br>
 
@@ -69,7 +69,7 @@ To run:
 ### Go
 To compile and execute:
 ```
-go run Happy.go 50 100
+go run collatz.go 50 100
 ```
 
 ### Julia 
@@ -118,4 +118,5 @@ For tutorial sources such as tutorialspoint, w3schools, youtube, geeks-for-geeks
 Some code snippets were used from rossettacode.org, particularly the function to determine if a number is happy.
 Some code ideas were taken from stackoverflow, etc, and changed to fit the program.
 Code used directly or indirectly from sources were commented with a "Reference:" header.
+A lot of code from the Happy Number project was reused directly or with modifications.
 
