@@ -2,8 +2,8 @@
 # COLLATZ CONJECTURE PROJECT
 
 In this project we display the ten smallest positive integers (provided there are ten or more) with the longest Collatz sequence lengths in a given range. If we get
-integers with the same sequence length we only keep the smallest integer.
-
+integers with the same sequence length we only keep the smallest integer. So, in case there are less than 10 integers with different Collatz sequence lengths, we will
+only display them. 
 
 ## The program flow
 
