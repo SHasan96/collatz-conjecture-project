@@ -13,7 +13,7 @@ All non-integer arguments will be immediately rejected. Integers less than 1 (be
 same arguments (which cannot be evaluated into a valid range) will also be checked and rejected.  
 More checks for the correct number of arguments could be implemented but it is assumed that the user will only test with valid numbers. The arguments will be swapped if necessary so that the iterations in the program start from the smaller integer and go upto the larger one (included).
 
-Once the integers are valid we use a loop starting from the smaller to the larger integer. We determine the Collatz sequence length of the each number and add them
+Once the integers are valid we use a loop starting from the smaller to the larger integer. We determine the Collatz sequence length of the each number and add it
 to a data structure. Any newer and bigger integer with the same sequence length that we encounter is not added. Once the data structure has 10 elements, it is sorted
 in descending order of the sequence length. A newer integer is only added if its corresponding sequence length is larger than the smallest sequence length currently
 present in the data structure.  
@@ -24,12 +24,17 @@ provided by the instructor). Sorting was carried out based on the data structure
 
 ### Data structures used
 
-For Fortran, Julia, and Rust arrays/vectors of structs were used. The structs contained the two fields - integer, and Collatz sequence length of the integer.
+For Fortran, Julia, and Rust arrays/vectors of structs were used. The structs contained the two fields -- integer, and Collatz sequence length of the integer.
 
-For Lisp two arrays were maintained in parallel, one held the integers and the other held their sequence lengths in the same index. 
+For Lisp two arrays were maintained in parallel, one held the integers and the other held their sequence lengths in the same corresponding index. 
 
-Finally, a map was used for go to store the integers and their sequence lengths as key-value pairs. The sequnece length being the key. This is feasible because
+A  map was used for Golang to store the integers and their sequence lengths as key-value pairs. The sequnece length was the key. This is feasible because
 we never store two integers with the same sequence length, (since we only keep the smallest). 
+
+All the data structures used were always maintained at size 10 (i.e., we never have more than 10 elements in them). Further elements are added after another 
+element is removed. In other words, the integer with the lowest sequence length will be removed if a newer integer with a larger sequence length is found. 
+This is the new element which is added to the tenth slot of our data structure. Whenever an element is replaced we resort the data structure before proceeding.
+Maintaining a small data structure (with only 10 elements) makes sorting efficient.
 
 ### Recursion
 
