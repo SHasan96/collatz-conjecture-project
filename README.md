@@ -9,10 +9,9 @@ integers with the same sequence length we only keep the smallest integer.
 
 The program starts by taking two integer arguments from the command line. These integers will be the start and end values for our range (inclusive). 
 
-All non-integer argumentss will be immediately rejected. Integers less than 1  or same arguments cannot be evaluated into a valid range, so they will also be checked
-and rejected. This is because the Collatz sequence length can only be determined for positive integers. More checks for the correct number of arguments could 
-be implemented by it is assumed that the user will only test with valid numbers. The arguments will be swapped if necessary so that the iterations in the
-program start from the smaller one and go upto the larger one (included).
+All non-integer argumentss will be immediately rejected. Integers less than 1 (because the Collatz sequence length can only be determined for positive integers)  or 
+same arguments cannot be evaluated into a valid range, so they will also be checked and rejected. This is because the Collatz sequence length can only be determined 
+More checks for the correct number of arguments could be implemented but it is assumed that the user will only test with valid numbers. The arguments will be swapped if necessary so that the iterations in the program start from the smaller integer and go upto the larger one (included).
 
 Once the integers are valid we use a loop starting from the smaller to the larger integer. We determine the Collatz sequence length of the each number and add them
 to a data structure. Any newer and bigger integer with the same sequence length that we encounter is not added. Once the data structure has 10 elements, it is sorted
