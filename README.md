@@ -47,7 +47,7 @@ The names of all source code files were "collatz" (for both the iterative and re
 
 We are taking command line arguments. The format is: <br>
 
-"`<filename>` `x` `y`" where x and y are integers such that x and y are greater than 0 and x is not equal y.
+"`<filename>` `x` `y`" where x and y are integers such that x and y are greater than 0 and x is not equal to y.
 
 
 In the follwing instructions we will use x = 50 and y = 100 (as examples like the sample output provided) to run the programs.  
