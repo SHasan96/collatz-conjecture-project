@@ -1,92 +1,117 @@
-# CollatzConjecture
+# CSC 330 - Project 3
+# COLLATZ CONJECTURE PROJECT
+
+In this project we display the ten smallest positive integers (provided there are ten or more) with the longest Collatz sequence lengths in a given range. If we get
+integers with the same sequence length we only keep the smallest integer.
 
 
+## The program flow
 
-## Getting started
+The program starts by taking two integer arguments from the command line. These integers will be the start and end values for our range (inclusive). 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+All non-integer argumentss will be immediately rejected. Integers less than 1  or same arguments cannot be evaluated into a valid range, so they will also be checked
+and rejected. This is because the Collatz sequence length can only be determined for positive integers. More checks for the correct number of arguments could 
+be implemented by it is assumed that the user will only test with valid numbers. The arguments will be swapped if necessary so that the iterations in the
+program start from the smaller one and go upto the larger one (included).
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Once the integers are valid we use a loop starting from the smaller to the larger integer. We determine the Collatz sequence length of the each number and add them
+to a data structure. Any newer and bigger integer with the same sequence length that we encounter is not added. Once the data structure has 10 elements, it is sorted
+in descending order of the sequence length. A newer integer is only added if its corresponding sequence length is larger than the smallest sequence length currently
+present in the data structure.  
 
-## Add your files
+Once we are done going through all the integers in the specified range, the ten (or less) smallest integers are printed out along with their corresponding 
+sequence lengths sorted by descending order of sequence length first and then by descending order of the integers themselves (as shown in the sample output 
+provided by the instructor). Sorting was carried out based on the data structure and programming language used. 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### Data structures used
 
+For Fortran, Julia, and Rust arrays/vectors of structs were used. The structs contained the two fields - integer, and Collatz sequence length of the integer.
+
+For Lisp two arrays were maintained in parallel, one held the integers and the other held their sequence lengths in the same index. 
+
+Finally, a map was used for go to store the integers and their sequence lengths as key-value pairs. The sequnece length being the key. This is feasible because
+we never store two integers with the same sequence length, (since we only keep the smallest). 
+
+### Recursion
+
+Each folder holds the source code file for that respective language and also a subfolder called "recursed". In this subfolder we basically have the same 
+program but the function to find the sequence length of an integer is now recursive. So, the only change is this one function.
+
+## Compilation and execution instructions
+
+The names of all source code files were "collatz" (for both the iterative and recursive functions) plus the appropriate file extension.
+
+We are taking command line arguments. The format is: <br>
+
+"`<filename>` `x` `y`" where x and y are integers such that x and y are greater than 0 and x is not equal y.
+
+
+In the follwing instructions we will use x = 50 and y = 100 (as examples like the sample output provided) to run the programs.  
+
+Listed in order in which they appear in the repo we have the following.
+
+
+### Fortran
+To compile:
 ```
-cd existing_repo
-git remote add origin http://anvil.cs.mercer.edu/hasan_s/collatzconjecture.git
-git branch -M main
-git push -uf origin main
+gfortran collatz.f95
+```
+An executable called "a.out" is created.<br>
+To run:
+```
+./a.out 50 100
 ```
 
-## Integrate with your tools
+### Go
+To compile and execute:
+```
+go run Happy.go 50 100
+```
 
-- [ ] [Set up project integrations](http://anvil.cs.mercer.edu/hasan_s/collatzconjecture/-/settings/integrations)
+### Julia 
+We are running this as a script.
+On the very top of our program we add the line:
+```
+#!/usr2/local/julia-1.8.2/bin/julia
+```
+We then make the file executable for the user by:
+```
+chmod u+x collatz.jl
+```
+To run:
+```
+./collatz.jl 50 100
+```
 
-## Collaborate with your team
+### Lisp
+We are running this as a script.
+On the very top of our program we add the line:
+```
+#!/usr/bin/sbcl --script
+```
+We then make the file executable for the user by:
+```
+chmod u+x collatz.lisp
+```
+To run:
+```
+./collatz.lisp 50 100
+```
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### Rust
+To compile:
+```
+rustc collatz.rs 
+```
+An executable with the name "collatz" is created.<br>
+To run:
+```
+./collatz 50 100
+```
 
-## Test and Deploy
+## References:
+For tutorial sources such as tutorialspoint, w3schools, youtube, geeks-for-geeks, etc. were used.
+Some code snippets were used from rossettacode.org, particularly the function to determine if a number is happy.
+Some code ideas were taken from stackoverflow, etc, and changed to fit the program.
+Code used directly or indirectly from sources were commented with a "Reference:" header.
 
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
