@@ -9,7 +9,7 @@ integers with the same sequence length we only keep the smallest integer.
 
 The program starts by taking two integer arguments from the command line. These integers will be the start and end values for our range (inclusive). 
 
-All non-integer argumentss will be immediately rejected. Integers less than 1 (because the Collatz sequence length can only be determined for positive integers)  or 
+All non-integer arguments will be immediately rejected. Integers less than 1 (because the Collatz sequence length can only be determined for positive integers)  or 
 same arguments (which cannot be evaluated into a valid range) will also be checked and rejected.  
 More checks for the correct number of arguments could be implemented but it is assumed that the user will only test with valid numbers. The arguments will be swapped if necessary so that the iterations in the program start from the smaller integer and go upto the larger one (included).
 
