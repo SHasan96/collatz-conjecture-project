@@ -115,8 +115,6 @@ To run:
 
 ## References:
 For tutorial sources such as tutorialspoint, w3schools, youtube, geeks-for-geeks, etc. were used.
-Some code snippets were used from rossettacode.org, particularly the function to determine if a number is happy.
 Some code ideas were taken from stackoverflow, etc, and changed to fit the program.
-Code used directly or indirectly from sources were commented with a "Reference:" header.
 A lot of code from the Happy Number project was reused directly or with modifications.
 
